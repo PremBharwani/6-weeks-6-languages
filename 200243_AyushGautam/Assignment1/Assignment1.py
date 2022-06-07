@@ -14,9 +14,10 @@ class Member:
     self.phone_number=phone_number
     self.dob=dob
   def display_info_by_id (self,id):
-    print("Unique id : ",self.id)
-    print("Name : ",self.name)
-    print("Username : ",self.username)
+    if id==self.id: 
+     print("Unique id : ",self.id)
+     print("Name : ",self.name)
+     print("Username : ",self.username)
   def contact_details(self):
     print("Phone Number :  ",self.phone_number) 
   def display_age(self):
