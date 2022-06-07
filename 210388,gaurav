@@ -1,0 +1,36 @@
+class Member:
+     def init(self, id, name, username, phone_number, dob):
+         self.id = id
+         self.name = name
+         self.username = username
+         self.phone_number = phone_number
+         self.dob = dob #DDMMYYYY
+
+     def update_info_by_id(self ,id ,name, username, phone_number, dob):
+         if self.id == id :
+             self.name = name
+             self.username = username
+             self.phone_number = phone_number
+             self.dob = dob
+
+     def display_info_by_id (self, id):
+         if self.id == id :
+             print(self.id)
+             print(self.name)
+             print(self.username)
+             print(self.phone_number)
+             print(self.dob)
+
+     def contact_details(self) :
+         print(self.phone_number)
+
+     def display_age(self) :
+         print("Age{}".format(2022-(self.dob/100000)))
+
+
+class Professor(Member) :
+    def init(self, field, attendance):
+        self.field = field
+        self.attendance = attendance
+
+   
