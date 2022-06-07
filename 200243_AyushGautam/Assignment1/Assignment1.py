@@ -110,7 +110,7 @@ class Professor(Member):  ## CHILD CLASS FOR PROFESSOR
       print("Full Money: Ticket price: ",ticket_price)
 
   def attendance_is_ok(self):
-    if self.attendance>=90:
+    if ((self.attendance*100)/365)>=90:
       print("Attendance : okay")
     else: 
       print("Attendance : not okay")
@@ -131,7 +131,7 @@ class Student(Member):  ## CHILD CLASS FOR STUDENT
       print("Full Money: Ticket price: ",ticket_price)
 
   def attendance_is_ok(self):
-    if self.attendance>=75:
+    if ((self.attendance*100)/365)>=75:
       
       print("Attendance : okay")
     else: 
@@ -141,7 +141,7 @@ class Main():
     print("STUDENT DETAILS ::::::::::")
     obj_stud=Student(0,None,None,None,None)
     obj_stud.branch="Mechanical"
-    obj_stud.attendance=85
+    obj_stud.attendance=200
     Id=id(obj_stud)   ## creat a unique id fro this object
     obj_stud.update_info_by_id(Id,"Ayush Gautam","ayushg20","987654321","25/09/2001")
     obj_stud.display_info_by_id(Id)
@@ -154,7 +154,7 @@ class Main():
     
     obj_prof=Professor(0,None,None,None,None)
     obj_prof.field="Research"
-    obj_prof.attendance=90
+    obj_prof.attendance=300
     Id=id(obj_prof)    ## create a unique id for this object
     obj_prof.update_info_by_id(Id,"SK Singh","sksingh","123456789","12/07/1983")
     obj_prof.display_info_by_id(Id)
