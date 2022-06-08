@@ -15,9 +15,10 @@ class Member:
     self.phone_number=phone_number
     self.dob=dob
   def display_info_by_id (self,id):
-    print("Unique id : ",self.id)
-    print("Name : ",self.name)
-    print("Username : ",self.username)
+    if(self.id==id)
+     print("Unique id : ",self.id)
+     print("Name : ",self.name)
+     print("Username : ",self.username)
   def contact_details(self):
     print("Phone Number :  ",self.phone_number) 
   def display_age(self):
@@ -76,7 +77,7 @@ class Main():
     obj_stud.attendance=85
     Id=id(obj_stud)   ## creat a unique id fro this object
     obj_stud.update_info_by_id(Id,"Ayush Gautam","ayushg20","987654321","25/09/2001")
-    obj_stud.display_info_by_id(200243)
+    obj_stud.display_info_by_id(Id)
     obj_stud.contact_details()
     obj_stud.attendance_is_ok()
     age=obj_stud.display_age()
@@ -89,7 +90,7 @@ class Main():
     obj_prof.attendance=90
     Id=id(obj_prof)    ## create a unique id for this object
     obj_prof.update_info_by_id(Id,"SK Singh","sksingh","123456789","12/07/1983")
-    obj_prof.display_info_by_id(1234)
+    obj_prof.display_info_by_id(Id)
     obj_prof.contact_details()
     obj_prof.attendance_is_ok()
     age=obj_prof.display_age()
