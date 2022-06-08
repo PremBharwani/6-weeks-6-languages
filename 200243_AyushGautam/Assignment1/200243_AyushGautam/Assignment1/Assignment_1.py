@@ -42,7 +42,7 @@ class Professor(Member):  ## CHILD CLASS FOR PROFESSOR
       print("Full Money: Ticket price: ",ticket_price)
 
   def attendance_is_ok(self):
-    if self.attendance>=90:
+    if ((self.attendance*100)/365)>=90:
       print("Attendance : okay")
     else: 
       print("Attendance : not okay")
@@ -63,7 +63,7 @@ class Student(Member):  ## CHILD CLASS FOR STUDENT
       print("Full Money: Ticket price: ",ticket_price)
 
   def attendance_is_ok(self):
-    if self.attendance>=75:
+    if ((self.attendance*100)/365)>=75:
       
       print("Attendance : okay")
     else: 
