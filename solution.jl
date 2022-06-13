@@ -1,13 +1,14 @@
 using BenchmarkTools
 V1 = Vector{Any}(undef,10000)
 V2 = Vector{Any}(undef,10000)
-for i in 1:5000
-    V1[i]=rand(1:100)
-    V2[i]=rand(1:100)
-end
-for i in 5001:10000
-    V1[i]=100*rand(Float64)
-    V2[i]=100*rand(Float64)
+for i in 1:10000
+    if rand(1:100)>50
+        V1[i]=rand(1:100)
+        V2[i]=rand(1:100)
+    else
+        V1[i]=100*rand(Float64)
+        V2[i]=100*rand(Float64)
+    end
 end
 function f1(x)
     a=4*(x^4) + 9*(x^2) + 10*x + 1
