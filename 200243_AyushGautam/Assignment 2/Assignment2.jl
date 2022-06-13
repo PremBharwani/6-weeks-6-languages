@@ -2,6 +2,8 @@ using BenchmarkTools
 
 V1 = Vector{Any}(undef,10000)   ## vector of type "Any"
 
+V2 = Vector{Any}(undef,10000)
+
 for i = 1:10000
   ## filling V1
   x=rand()
@@ -20,7 +22,6 @@ for i = 1:10000
   end
 end
 
-V2 = Vector{Any}(undef,10000)
 
 for i = 1:10000
   ## filling V2
