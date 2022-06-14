@@ -16,7 +16,7 @@ for i = 1:10000
     end
   end
   if x<0.5                ## if the random value returned is < 0.5 assign a float value(so that the ratio can be nearly 1:1)
-    V1[i]=floor(y)  
+    V1[i]=y  
   else
     V1[i]=rand((1:100))   ## otherwise assign an integer value between 1 and 100
   end
@@ -35,7 +35,7 @@ for i = 1:10000
     end
   end
   if x<0.5
-    V2[i]=floor(y)
+    V2[i]=y
   else
     V2[i]=rand((1:100))
   end
