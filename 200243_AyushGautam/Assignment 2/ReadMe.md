@@ -19,9 +19,12 @@ IN Solve2(V1,V2): WE HAVE SET sum ALREADY TO Float64.
 
 
 USING @code_warntype we can check type-stability of our functions.
+
+Also using @time we see that timw taken by Solve2(V1,V2) is lesser.
 Given below are the outputs returned by it.
 ============================================================================ 
 OUTPUT IN TERMINAL::
+
 
 f (generic function with 1 method)
 
@@ -31,45 +34,51 @@ Solve2 (generic function with 1 method)
 
 julia> V1
 10000-element Vector{Any}:
-  8.0
- 12.0
-  4.0
- 45
- 58
- 80
- 55
-  ⋮
- 15.0
- 23.0
- 72
- 48.0
- 69
- 69
- 88
+  10
+  13.54077720893676
+  88
+  11.689424003615144
+  25.788130050978097
+   3
+  98
+  75
+   8
+   ⋮
+  25.93958191165505
+  39.97832824187327
+  49
+ 100
+  17.901702563549073
+  28.28706120811233
+  24.75465640304806
+  47
 
 julia> V2
 10000-element Vector{Any}:
-  9.0
- 18.0
- 11.0
- 83
-  2
- 25.0
- 94
+  5.347873976972306
+ 54
+ 39.705893454541716
+ 29.606172745522308
+ 72
+ 99
+ 20
+ 10.36116154293204
+ 20.82421527164121
   ⋮
- 40.0
- 83
+ 35.328662357612984
+ 14.072184519151676
+ 66
+ 49.301450157606475
  93
-  5.0
- 29
- 22
- 14.0
+ 88
+  5.55168606182459
+ 91
 
 julia> Solve1(V1,V2)
-4.89842357371e11
+4.9585746583806226e11
 
 julia> Solve2(V1,V2)
-4.89842357371e11
+4.9585746583806226e11
 
 
 julia> @code_warntype Solve1(V1,V2)
@@ -109,10 +118,45 @@ Body::Any
 4 ┄       return sum
 
 
-julia> @code_warntype Solve2(V1,V2)
+julia> @code_warntype Solve1(V1,V2)
+MethodInstance for Solve1(::Vector{Any}, ::Vector{Any})
+  from Solve1(V1, V2) in Main at c:\Users\ayush\OneDrive\Documents\Assignment 2\Assignment2.jl:52
+Arguments
+  #self#::Core.Const(Solve1)
+  V1::Vector{Any}
+  V2::Vector{Any}
+Locals
+  @_4::Union{Nothing, Tuple{Int64, Int64}}
+  sum::Any
+  i::Int64
+  y::Any
+  x::Any
+Body::Any
+1 ─       (sum = 0)
+│   %2  = (1:10000)::Core.Const(1:10000)
+│         (@_4 = Base.iterate(%2))
+│   %4  = (@_4::Core.Const((1, 1)) === nothing)::Core.Const(false)
+│   %5  = Base.not_int(%4)::Core.Const(true)
+└──       goto #4 if not %5
+2 ┄ %7  = @_4::Tuple{Int64, Int64}
+│         (i = Core.getfield(%7, 1))
+│   %9  = Core.getfield(%7, 2)::Int64
+│         (x = Base.getindex(V1, i))
+│         (y = Base.getindex(V2, i))
+│   %12 = sum::Any
+│   %13 = Main.f(x, y)::Any
+│         (sum = %12 + %13)
+│         (@_4 = Base.iterate(%2, %9))
+│   %16 = (@_4 === nothing)::Bool
+│   %17 = Base.not_int(%16)::Bool
+└──       goto #4 if not %17
+3 ─       goto #2
+4 ┄       return sum
 
+
+julia> @code_warntype Solve2(V1,V2)
 MethodInstance for Solve2(::Vector{Any}, ::Vector{Any})
-  from Solve2(V1, V2) in Main at c:\Users\ayush\OneDrive\Documents\Assignment 2\Assignment2.jl:64
+  from Solve2(V1, V2) in Main at c:\Users\ayush\OneDrive\Documents\Assignment 2\Assignment2.jl:65
 Arguments
   #self#::Core.Const(Solve2)
   V1::Vector{Any}
@@ -149,11 +193,10 @@ Body::Float64
 4 ┄       return sum
 
 
-
 julia> @time Solve1(V1,V2)
-  0.001367 seconds (20.00 k allocations: 312.438 KiB) 
-4.89842357371e11
+  0.003162 seconds (19.99 k allocations: 312.344 KiB)
+4.9585746583806226e11
 
 julia> @time Solve2(V1,V2)
-  0.002989 seconds (30.00 k allocations: 468.703 KiB) 
-4.89842357371e11
+  0.003061 seconds (29.99 k allocations: 468.609 KiB)
+4.9585746583806226e11
